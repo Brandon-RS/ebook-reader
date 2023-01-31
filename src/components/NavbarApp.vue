@@ -30,7 +30,7 @@
 
 <style lang="scss" scoped>
 @import '@/assets/scss/colors.scss';
-$radius: 8px;
+@import '@/assets/scss/sizes.scss';
 
 .home-navbar {
   display: flex;
@@ -99,7 +99,7 @@ $radius: 8px;
       text-decoration: none;
       background-color: $blue;
       border-radius: $radius;
-      color: $background;
+      color: $white;
       display: flex;
       align-items: center;
       padding: 0 20px;
