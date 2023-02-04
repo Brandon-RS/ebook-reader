@@ -1,12 +1,27 @@
 <script setup lang="ts">
-import Banner from '@/components/home/BannerHome.vue'
-import Categories from '@/components/home/CategoriesHome.vue'
+import { defineAsyncComponent } from 'vue'
+
+const Banner = defineAsyncComponent(() => import('@/components/home/BannerHome.vue'))
+const Categories = defineAsyncComponent(() => import('@/components/home/CategoriesHome.vue'))
+const Popular = defineAsyncComponent(() => import('@/components/home/PopularHome.vue'))
+const Section = defineAsyncComponent(() => import('@/components/home/SectionHome.vue'))
+const Login = defineAsyncComponent(() => import('@/components/home/LoginHome.vue'))
 </script>
 
 <template>
   <main class="home-container">
     <Banner />
-    <Categories />
+    <Section
+      title="Contamos con una gran variedad de libros para facilitar tu aprendizaje"
+      :btn="{ name: 'books-categories', text: 'Ver Todas las Categorías' }"
+      :child="Categories" />
+
+    <Section
+      title="Libros más populares"
+      :btn="{ name: 'books-home', text: 'Ver Todos los Libros' }"
+      :child="Popular" />
+
+    <Login />
   </main>
 
   <div class="style-elements">
@@ -18,6 +33,10 @@ import Categories from '@/components/home/CategoriesHome.vue'
 <style lang="scss" scoped>
 @import '@/assets/scss/colors.scss';
 @import '@/assets/scss/sizes.scss';
+
+.home-container {
+  display: grid;
+}
 
 .style-elements {
   .style-item-1 {

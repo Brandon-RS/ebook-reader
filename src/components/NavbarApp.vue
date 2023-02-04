@@ -15,11 +15,6 @@ const showMobileMenu = (home?: boolean) => {
     body?.classList.remove('remove-scroll')
   }
 }
-
-const test = () => {
-  console.log('asdf')
-}
-
 </script>
 
 <template>
@@ -37,14 +32,30 @@ const test = () => {
         @click="() => showMobileMenu(false)"></i>
       <div class="navbar-options">
         <div class="options">
-          <router-link class="opt-item" @click="showMobileMenu"
-            :to="{ name: 'books-home' }">LIBROS</router-link>
-          <router-link class="opt-item" @click="showMobileMenu"
-            :to="{ name: 'books-categories' }">CATEGORÍAS</router-link>
-          <router-link class="opt-item" @click="showMobileMenu"
-            :to="{ name: 'books-authors' }">AUTORES</router-link>
-          <router-link class="opt-item" @click="showMobileMenu" :to="{ name: 'about' }">ACERCA
-            DE</router-link>
+          <router-link
+            class="opt-item"
+            @click="showMobileMenu"
+            :to="{ name: 'books-home' }">
+            <span>LIBROS</span> <i v-show="isOpen" class="fas fa-angle-right"></i>
+          </router-link>
+          <router-link
+            class="opt-item"
+            @click="showMobileMenu"
+            :to="{ name: 'books-categories' }">
+            <span>CATEGORÍAS</span> <i v-show="isOpen" class="fas fa-angle-right"></i>
+          </router-link>
+          <router-link
+            class="opt-item"
+            @click="showMobileMenu"
+            :to="{ name: 'books-authors' }">
+            <span>AUTORES</span> <i v-show="isOpen" class="fas fa-angle-right"></i>
+          </router-link>
+          <router-link
+            class="opt-item"
+            @click="showMobileMenu"
+            :to="{ name: 'about' }">
+            <span>ACERCA DE</span> <i v-show="isOpen" class="fas fa-angle-right"></i>
+          </router-link>
         </div>
 
         <div class="buttons">
@@ -64,6 +75,8 @@ const test = () => {
 @import '@/assets/scss/colors.scss';
 @import '@/assets/scss/sizes.scss';
 
+$tr-time: .3s;
+
 .home-navbar {
   display: flex;
   font-size: 16px;
@@ -80,79 +93,82 @@ const test = () => {
       width: 60px;
     }
   }
-}
 
-.navbar-options {
-  display: flex;
-  gap: 35px;
+  .navbar {
+    .navbar-options {
+      display: flex;
+      gap: 35px;
 
-  .options {
-    display: flex;
-    gap: 30px;
-    align-items: center;
+      .options {
+        display: flex;
+        gap: 30px;
+        align-items: center;
 
-    .opt-item {
-      text-decoration: none;
-      color: $blue;
-      font-weight: 600;
-      padding: 0 4px;
-      border-bottom: 3px solid $transparent;
-      transition: all .5s ease-out;
+        .opt-item {
+          text-decoration: none;
+          color: $blue;
+          font-weight: 600;
+          padding: 0 4px;
+          border-bottom: 3px solid $transparent;
+          transition: all $tr-time ease-out;
 
-      &:hover {
-        border-bottom: 3px solid $blue;
-        transition: all .5s ease-in;
+          &:hover {
+            border-bottom: 3px solid $blue;
+            transition: all $tr-time ease-in;
+          }
+        }
+
+        .active-exact-route {
+          border-bottom: 3px solid $blue;
+          transition: all $tr-time ease-in;
+        }
       }
-    }
 
-    .active-exact-route {
-      border-bottom: 3px solid $blue;
-      transition: all .5s ease-in;
+      .buttons {
+        display: flex;
+        gap: 20px;
+
+        .input-search {
+          border: 3px solid $blue;
+          border-radius: $radius;
+          padding: 8px 12px;
+          background-color: $white;
+
+          input {
+            border: none;
+            outline: none;
+          }
+
+          i {
+            color: $blue;
+            transform: scale(-1, 1);
+          }
+        }
+
+        .btn-access {
+          text-decoration: none;
+          background-color: $blue;
+          border-radius: $radius;
+          color: $white;
+          display: flex;
+          align-items: center;
+          padding: 0 20px;
+          font-weight: 600;
+          font-size: 17px;
+          transition: all $tr-time ease-out;
+          display: flex;
+          justify-content: center;
+
+          &:hover {
+            box-shadow: 2px 2px 5px $blue-shadow;
+            transition: all $tr-time ease-in;
+          }
+        }
+      }
     }
   }
-
-  .buttons {
-    display: flex;
-    gap: 20px;
-
-    .input-search {
-      border: 3px solid $blue;
-      border-radius: $radius;
-      padding: 8px 12px;
-      background-color: $white;
-
-      input {
-        border: none;
-        outline: none;
-      }
-
-      i {
-        color: $blue;
-        transform: scale(-1, 1);
-      }
-    }
-
-    .btn-access {
-      text-decoration: none;
-      background-color: $blue;
-      border-radius: $radius;
-      color: $white;
-      display: flex;
-      align-items: center;
-      padding: 0 20px;
-      font-weight: 600;
-      font-size: 17px;
-      transition: all .3s ease-out;
-      display: flex;
-      justify-content: center;
-
-      &:hover {
-        box-shadow: 2px 2px 5px $blue-shadow;
-        transition: all .3s ease-in;
-      }
-    }
-  }
 }
+
 
 @media screen and (max-width: 1005px) {
   .home-navbar {
@@ -174,7 +190,7 @@ const test = () => {
       height: v-bind("isOpen ? '100vh' : '100px'");
       justify-content: flex-end;
       cursor: pointer;
-      transition: all .2s ease-out;
+      transition: all $tr-time ease-out;
 
       .mobile-bars {
         display: inline-block;
@@ -196,7 +212,7 @@ const test = () => {
         border-radius: 10px;
         width: 320px;
         cursor: default;
-        transition: all .2s ease-out;
+        transition: all $tr-time ease-out;
 
         .options,
         .buttons {
@@ -207,8 +223,12 @@ const test = () => {
         .options {
           gap: 30px;
           margin-top: 30px;
+          align-items: baseline;
 
           .opt-item {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
             color: $white;
           }
         }
@@ -220,6 +240,7 @@ const test = () => {
           .btn-access {
             width: 250px;
             border: none;
+            transition: all $tr-time ease;
           }
 
           .input-search {
@@ -233,6 +254,26 @@ const test = () => {
             background-color: $white;
             color: $blue;
             height: 35px;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .home-navbar {
+    .navbar {
+      .navbar-options {
+        width: 100%;
+        padding: v-bind("isOpen ? '20px 60px' : '0'");
+
+        .buttons {
+
+          .input-search,
+          .btn-access {
+            width: 100%;
+            transition: all $tr-time ease;
           }
         }
       }

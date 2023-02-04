@@ -1,0 +1,15 @@
+@import "colors.scss";
+@import "sizes.scss";
+
+.section-button {
+  text-align: center;
+  background-color: $orange;
+  text-decoration: none;
+  color: $white;
+  margin-top: 40px;
+  padding: 10px 50px;
+  border-radius: $radius;
+  font-weight: 600;
+  font-size: 17px;
+  justify-self: center;
+}
