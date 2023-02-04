@@ -38,10 +38,13 @@
 
   .ctg-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 
     .ctg-item {
       width: 200px;
+      img {
+        width: 150px;
+      }
     }
   }
 

@@ -26,7 +26,7 @@
 .banner-container {
   align-items: center;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(520px, 1fr));
   margin-top: 40px;
   position: relative;
   width: 100%;
@@ -46,6 +46,33 @@
   .banner-image {
     img {
       max-width: 600px;
+      transition: all .2s ease;
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .banner-container {
+    .banner-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        max-width: 500px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .banner-container {
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+
+    .banner-image {
+      img {
+        max-width: 400px;
+      }
     }
   }
 }
