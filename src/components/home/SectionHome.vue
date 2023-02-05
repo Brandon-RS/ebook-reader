@@ -1,11 +1,16 @@
 <script setup lang="ts">
-import type { Component } from 'vue'
+import { defineAsyncComponent } from 'vue'
+import type { bookType, categoryType } from '@/types'
+const Categories = defineAsyncComponent(() => import('@/components/home/CategoriesHome.vue'))
+const Popular = defineAsyncComponent(() => import('@/components/home/PopularHome.vue'))
 
 defineProps<{
   title: string,
-  child: Component,
-  btn: { name: string, text: string }
+  type: 'category' | 'book',
+  list: categoryType[] | bookType[]
+  btn: { name: string, text: string },
 }>()
+
 </script>
 
 <template>
@@ -14,7 +19,16 @@ defineProps<{
       {{ title }}
     </h2>
     <div class="section-row">
-      <component :is="child"></component>
+      <div
+        v-for="(item, index) in list" :key="item.id"
+        class="section-item">
+        <template v-if="type === 'category'">
+          <Categories :category="item" :index="index" />
+        </template>
+        <template v-if="type === 'book'">
+          <Popular :book="item" />
+        </template>
+      </div>
     </div>
     <router-link class="section-button" :to="{ name: btn.name }">{{ btn.text }}</router-link>
   </div>
@@ -39,9 +53,13 @@ defineProps<{
 
   .section-row {
     display: grid;
-    gap: 40px;
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     justify-items: center;
+
+    .section-item {
+      max-width: 300px;
+    }
   }
 }
 </style>

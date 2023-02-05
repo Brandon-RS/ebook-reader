@@ -1,11 +1,18 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
+import { defineAsyncComponent, computed } from 'vue'
+import { useBookStore } from '@/stores/book.store'
+import { useCategoryStore } from '@/stores/category.store'
 
 const Banner = defineAsyncComponent(() => import('@/components/home/BannerHome.vue'))
-const Categories = defineAsyncComponent(() => import('@/components/home/CategoriesHome.vue'))
-const Popular = defineAsyncComponent(() => import('@/components/home/PopularHome.vue'))
 const Section = defineAsyncComponent(() => import('@/components/home/SectionHome.vue'))
 const Login = defineAsyncComponent(() => import('@/components/home/LoginHome.vue'))
+
+const bookStore = useBookStore()
+const categoryStore = useCategoryStore()
+
+const allCategories = computed(() => categoryStore.getAllCategories)
+const allBooks = computed(() => bookStore.getAllBooks)
+
 </script>
 
 <template>
@@ -14,12 +21,14 @@ const Login = defineAsyncComponent(() => import('@/components/home/LoginHome.vue
     <Section
       title="Contamos con una gran variedad de libros para facilitar tu aprendizaje"
       :btn="{ name: 'books-categories', text: 'Ver Todas las Categorías' }"
-      :child="Categories" />
+      type="category"
+      :list="allCategories" />
 
     <Section
       title="Libros más populares"
       :btn="{ name: 'books-home', text: 'Ver Todos los Libros' }"
-      :child="Popular" />
+      type="book"
+      :list="allBooks" />
 
     <Login />
   </main>

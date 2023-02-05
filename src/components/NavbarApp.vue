@@ -213,6 +213,7 @@ $tr-time: .3s;
         width: 320px;
         cursor: default;
         transition: all $tr-time ease-out;
+        overflow: auto;
 
         .options,
         .buttons {
