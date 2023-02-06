@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { defineAsyncComponent } from 'vue'
 import { RouterView } from 'vue-router'
 import Navbar from './components/NavbarApp.vue'
+const Footer = defineAsyncComponent(() => import('@/components/FooterApp.vue'))
 </script>
 
 <template>
@@ -10,6 +12,9 @@ import Navbar from './components/NavbarApp.vue'
         <Navbar />
       </header>
       <RouterView />
+      <footer>
+        <Footer />
+      </footer>
     </main>
   </div>
 </template>

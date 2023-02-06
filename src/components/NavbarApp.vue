@@ -173,19 +173,19 @@ $tr-time: .3s;
 @media screen and (max-width: 1005px) {
   .home-navbar {
     justify-content: center;
-
+    
     .navbar-icon {
       display: inline-block;
       z-index: 40;
       filter: drop-shadow(2px 2px 25px #ffffff45);
     }
-
+    
     .navbar {
       position: absolute;
       top: 0;
       z-index: 30;
       width: 100%;
-      background-color: #0c213be7;
+      background-color: $blue-transparent;
       display: flex;
       height: v-bind("isOpen ? '100vh' : '100px'");
       justify-content: flex-end;

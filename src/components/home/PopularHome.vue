@@ -34,7 +34,7 @@ img {
 
 p {
   font-size: 17px;
-  padding: 10px 0;
+  padding-top: 10px;
   text-align: justify;
 }
 
@@ -43,6 +43,5 @@ span {
   color: $orange;
   font-weight: 600;
   font-size: 16px;
-  margin-bottom: 10px;
 }
 </style>

@@ -5,6 +5,7 @@ interface useBookType {
   books: bookType[]
 }
 
+
 export const useBookStore = defineStore('book', {
   state: (): useBookType => ({
     books: [
@@ -14,8 +15,8 @@ export const useBookStore = defineStore('book', {
         description: 'Excepteur sint deserunt elit proident laboris esse elit. Ipsum dolor irure ipsum incididunt veniam irure. Quis aute dolor nulla fugiat cupidatat cillum tempor cillum aliqua nisi velit anim. Deserunt proident aliqua labore nulla aliqua ex excepteur non veniam proident. Consectetur magna occaecat sit ullamco sit aliqua consectetur ad enim quis consectetur nisi ex eu',
         author: 'Robert C. Martin',
         categories: ['Programming', 'Web', 'HTML'],
-        image: 'some url',
-        date: 'some date',
+        image: 'https://res.cloudinary.com/test-service/image/upload/v1675698996/ebook-reader/clean-code_b3gxha.png',
+        date: '2022',
         status: false
       },
       {
@@ -24,8 +25,8 @@ export const useBookStore = defineStore('book', {
         description: 'Esse deserunt nisi veniam aliqua ex fugiat velit incididunt do duis voluptate velit proident reprehenderit',
         author: 'Robert C. Martin',
         categories: ['Programming', 'Web', 'HTML'],
-        image: 'some url',
-        date: 'some date',
+        image: 'https://res.cloudinary.com/test-service/image/upload/v1675698996/ebook-reader/clean-code_b3gxha.png',
+        date: '2022',
         status: false
       },
       {
@@ -34,8 +35,8 @@ export const useBookStore = defineStore('book', {
         description: 'Dolore ad duis ipsum incididunt id velit ea aute dolor',
         author: 'Robert C. Martin',
         categories: ['Programming', 'Linux', 'HTML'],
-        image: 'some url',
-        date: 'some date',
+        image: 'https://res.cloudinary.com/test-service/image/upload/v1675698996/ebook-reader/clean-code_b3gxha.png',
+        date: '2022',
         status: false
       },
       {
@@ -44,8 +45,8 @@ export const useBookStore = defineStore('book', {
         description: 'Quis voluptate commodo ut excepteur do fugiat officia ad consectetur et',
         author: 'Robert C. Martin',
         categories: ['Programming', 'Web', 'HTML'],
-        image: 'some url',
-        date: 'some date',
+        image: 'https://res.cloudinary.com/test-service/image/upload/v1675698996/ebook-reader/clean-code_b3gxha.png',
+        date: '2022',
         status: false
       },
       {
@@ -54,8 +55,8 @@ export const useBookStore = defineStore('book', {
         description: 'In pariatur mollit qui dolore',
         author: 'Robert C. Martin',
         categories: ['Programming', 'Web', 'HTML'],
-        image: 'some url',
-        date: 'some date',
+        image: 'https://res.cloudinary.com/test-service/image/upload/v1675698996/ebook-reader/clean-code_b3gxha.png',
+        date: '2022',
         status: false
       },
     ]
@@ -65,8 +66,9 @@ export const useBookStore = defineStore('book', {
       return state.books
     },
     getBookByName: (state) => {
-      return (name: string) => {
-        console.log(`Find by name: ${name}`)
+      return (text: string) => {
+        if (text.length > 2)
+          return state.books.filter(book => book.name.toLowerCase().includes(text.toLowerCase()))
       }
     }
   }
